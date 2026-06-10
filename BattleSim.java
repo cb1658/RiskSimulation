@@ -67,6 +67,20 @@ public class BattleSim {
 		}
 		System.out.println(sum/iterations);
 		
+		// Average result of a 3v2:
+		
+		System.out.println("\n--------------------------------\n");
+		
+		int iter = 100000;
+		double sum2 = 0;
+		for(int i = 0; i < iter; i++) {
+			sum2 += (bs.defendersLossPerThreeAttackers());
+		}
+		System.out.println(sum2/iter);
+		
+		// For every 3 attackers lost, ~2.45 defenders are lost.
+		// Therefore, on average, you need greater than 3/2.45 = 1.25x odds in order to win a battle in Risk.
+		
 	}
 
 	public int[] simulateBattle(int numAttackers, int numDefenders, boolean userDelay) {
@@ -136,6 +150,10 @@ public class BattleSim {
 		
 		
 		return new int[] {numAttackers, numDefenders};
+	}
+	
+	public int defendersLossPerThreeAttackers() {
+		return threeAttackers(Integer.MAX_VALUE)[1];
 	}
 	
 	private int[] threeAttackers(int numDefenders) {
@@ -284,3 +302,4 @@ public class BattleSim {
 // v0.2: Beta
 // v1.0: Bug Fixes
 // v1.0.1: Bug Fixes + User Delay + Documentation
+// v1.0.2: defendersLossPerThreeAttackers
