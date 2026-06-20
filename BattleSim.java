@@ -58,7 +58,7 @@ public class BattleSim {
 		int iterations = 10000;
 		for(int i = 0; i < iterations; i++) {
 			
-			int[] outcome = bs.simulateBattle(2, 2, false);
+			int[] outcome = bs.simulateBattle(9, 2, false);
 			if(outcome[0] > outcome[1]) {
 				sum += outcome[0];
 			}else {
@@ -90,8 +90,8 @@ public class BattleSim {
 		int times = 10000;
 		for(int i = 0; i < iterations; i++) {
 			
-			int[] outcome = bs.simulateBattle(1, 3, false);
-			if(outcome[0] > outcome[1]) {
+			int[] results = bs.simulateBattle(3, 2, false);
+			if(results[0] > results[1]) {
 				count++;
 			}
 		}
@@ -209,7 +209,7 @@ public class BattleSim {
 			if(numDefenders - dLoss == 0 || aLoss == 3) {
 				return new int[]{aLoss, dLoss};
 			}
-			
+			if(numDefenders == 1) continue;
 			
 			if(aMax2 > dMax2)
 				dLoss++;
@@ -255,6 +255,8 @@ public class BattleSim {
 			if(numDefenders - dLoss == 0 || aLoss == 2) {
 				return new int[]{aLoss, dLoss};
 			}
+			
+			if(numDefenders == 1) continue;
 			
 			if(aMax2 > dMax2)
 				dLoss++;
